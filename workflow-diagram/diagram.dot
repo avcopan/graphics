@@ -1,0 +1,58 @@
+digraph G {
+    graph [
+        bgcolor="none"
+    ]
+    node [
+        shape="circle"
+        style="filled"
+        fillcolor="gray"
+        label=""
+        penwidth=3
+    ]
+    edge [
+        weight=5
+        penwidth=3
+    ]
+    AA, BL, BM, BN, CA, CB, CL, CM, CN, CX, CY, CZ, DA, DB, DL, DM [
+        fillcolor="springgreen"
+    ]
+    CC [
+        fillcolor="darkorange"
+    ]
+    DC [
+        fillcolor="crimson"
+    ]
+    //  [
+    //     fillcolor="springgreen"
+    // ]
+    AA -> BL
+    AA -> BM
+    AA -> BN
+    BL -> CA
+    BL -> CB
+    BL -> CC
+    BM -> CL
+    BM -> CM
+    BM -> CN
+    BN -> CX
+    BN -> CY
+    BN -> CZ
+    CA -> DA
+    CB -> DB
+    CC -> DC
+    CL -> DL
+    CM -> DM
+    CN -> DN
+    CX -> DX
+    CY -> DY
+    CZ -> DZ
+    DA -> EA
+    DB -> EB
+    DC -> EC
+    DL -> EL
+    DM -> EM
+    DN -> EN
+    DX -> EX
+    DY -> EY
+    DZ -> EZ
+}
