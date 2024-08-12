@@ -1,0 +1,17 @@
+digraph g {
+    node [
+        // fontname="Ubuntu mono"
+        shape=plain
+		label=<<table cellspacing="0" border="0">
+			<tr> <td bgcolor="#817281" border="0" width="200"> </td> </tr>
+			<tr> <td bgcolor="thistle" border="0"> </td> </tr>
+			<tr> <td bgcolor="thistle" border="0"> </td> </tr>
+			<tr> <td bgcolor="thistle" border="0"> </td> </tr>
+		</table>>
+    ]
+    point
+    method
+    energy
+    gradient
+    hessian 
+}
