@@ -1,17 +1,47 @@
 digraph g {
-    node [
-        // fontname="Ubuntu mono"
-        shape=plain
-		label=<<table cellspacing="0" border="0">
-			<tr> <td bgcolor="#817281" border="0" width="200"> </td> </tr>
-			<tr> <td bgcolor="thistle" border="0"> </td> </tr>
-			<tr> <td bgcolor="thistle" border="0"> </td> </tr>
-			<tr> <td bgcolor="thistle" border="0"> </td> </tr>
-		</table>>
-    ]
-    point
-    method
+	graph [
+		fontname="Arial"
+        rankdir="LR"
+        ordering="out"
+        // splines=curved
+        splines=line
+	]
+	node [
+		style=filled
+		shape=circle
+        penwidth=0
+		fontname="Ubuntu Mono"
+        width=1.5
+	]
+    # Layer 1
     energy
-    gradient
-    hessian 
+    hessian
+    etc1 [label="..."];
+
+    point
+    model
+
+    energy      -> point [arrowtail=crow; arrowhead=tee; dir=both]
+    hessian     -> point [arrowtail=crow; arrowhead=tee; dir=both]
+    etc1        -> point [arrowtail=crow; arrowhead=tee; dir=both]
+
+    energy      -> model [arrowtail=crow; arrowhead=tee; dir=both]
+    hessian     -> model [arrowtail=crow; arrowhead=tee; dir=both]
+    etc1        -> model [arrowtail=crow; arrowhead=tee; dir=both]
+
+    # Layer 2
+    stat_point [label="stationary\npoint"]
+    irc_point [label="IRC\npoint"]
+    frozen_point [label="frozen\nscan point"]
+    etc2 [label="..."]
+
+    point -> stat_point     [arrowtail=tee; arrowhead=odot; dir=both]
+    point -> irc_point      [arrowtail=tee; arrowhead=odot; dir=both]
+    point -> frozen_point   [arrowtail=tee; arrowhead=odot; dir=both]
+    point -> etc2           [arrowtail=tee; arrowhead=odot; dir=both]
+
+    model -> stat_point     [arrowtail=tee; arrowhead=crow; dir=both]
+    model -> irc_point      [arrowtail=tee; arrowhead=crow; dir=both]
+    model -> frozen_point   [style=invis]
+    model -> etc2           [style=invis]
 }
