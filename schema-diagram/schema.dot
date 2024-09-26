@@ -11,13 +11,16 @@ digraph g {
 		shape=circle
         penwidth=0
 		fontname="Ubuntu Mono"
-        width=1.5
+        width=1
+        margin=0
 	]
-    # Layer 1
+
+    # Layer 1a
     energy
     hessian
     etc1 [label="..."];
 
+    # Layer 1b
     point
     model
 
@@ -29,19 +32,43 @@ digraph g {
     hessian     -> model [arrowtail=crow; arrowhead=tee; dir=both]
     etc1        -> model [arrowtail=crow; arrowhead=tee; dir=both]
 
-    # Layer 2
+    # Layer 2a
     stat_point [label="stationary\npoint"]
+    irc_end_point [label="IRC end\npoint"]
     irc_point [label="IRC\npoint"]
-    frozen_point [label="frozen\nscan point"]
+    rel_scan_point [label="relaxed\nscan\npoint"]
     etc2 [label="..."]
 
     point -> stat_point     [arrowtail=tee; arrowhead=odot; dir=both]
+    point -> irc_end_point  [arrowtail=tee; arrowhead=odot; dir=both]
     point -> irc_point      [arrowtail=tee; arrowhead=odot; dir=both]
-    point -> frozen_point   [arrowtail=tee; arrowhead=odot; dir=both]
+    point -> rel_scan_point   [arrowtail=tee; arrowhead=odot; dir=both]
     point -> etc2           [arrowtail=tee; arrowhead=odot; dir=both]
 
     model -> stat_point     [arrowtail=tee; arrowhead=crow; dir=both]
+    model -> irc_end_point  [arrowtail=tee; arrowhead=crow; dir=both]
     model -> irc_point      [arrowtail=tee; arrowhead=crow; dir=both]
-    model -> frozen_point   [style=invis]
+    model -> rel_scan_point   [style=invis]
     model -> etc2           [style=invis]
+
+    # Layer 2b
+    conf_set [label="conformer\nset"]
+    irc_path [label="IRC\npath"]
+    rel_scan [label="relaxed\nscan"]
+
+    # Layer 2c
+    end_point [label="end\npoint"]
+    point_sequence [label="point\nsequence"]
+
+
+    stat_point -> conf_set      [arrowtail=crow; arrowhead=crow; dir=both]
+    stat_point -> end_point       [arrowtail=odot; arrowhead=tee; dir=both]
+    irc_end_point -> end_point    [arrowtail=odot; arrowhead=tee; dir=both]
+    irc_end_point -> irc_path   [arrowtail=crow; arrowhead=tee; dir=both]
+    irc_point -> irc_path       [arrowtail=crow; arrowhead=tee; dir=both]
+    rel_scan_point -> rel_scan  [arrowtail=crow; arrowhead=tee; dir=both]
+    irc_path -> point_sequence  [arrowtail=odot; arrowhead=tee; dir=both]
+    rel_scan -> point_sequence  [arrowtail=odot; arrowhead=tee; dir=both]
+
+    # Layer 3
 }

@@ -1,0 +1,54 @@
+digraph G {
+	graph [
+		fontname="Arial"
+        rankdir="LR"
+        ordering="out"
+        // splines=curved
+        splines=line
+	]
+	node [
+		style=filled
+		shape=circle
+        penwidth=0
+		fontname="Ubuntu Mono"
+        width=1
+        margin=0
+	]
+
+	subgraph cluster_0 {
+        energy;
+        hessian;
+        etc1 [label="..."];
+
+        # Layer 1b
+        point;
+        model;
+
+        energy      -> point [arrowtail=crow; arrowhead=tee; dir=both]; 
+        hessian     -> point [arrowtail=crow; arrowhead=tee; dir=both];
+        etc1        -> point [arrowtail=crow; arrowhead=tee; dir=both];
+
+        energy      -> model [arrowtail=crow; arrowhead=tee; dir=both];
+        hessian     -> model [arrowtail=crow; arrowhead=tee; dir=both];
+        etc1        -> model [arrowtail=crow; arrowhead=tee; dir=both]; 
+
+        label="Layer 1";
+	}
+
+	subgraph cluster_1 {
+		node [style=filled];
+		b0 -> b1 -> b2 -> b3;
+		label = "process #2";
+		color=blue
+	}
+	start -> a0;
+	start -> b0;
+	a1 -> b3;
+	b2 -> a3;
+	a3 -> a0;
+	a3 -> end;
+	b3 -> end;
+
+	start [shape=Mdiamond];
+	end [shape=Msquare];
+}
