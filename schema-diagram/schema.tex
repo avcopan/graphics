@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage[x12names, svgnames, rgb]{xcolor}
+\usepackage[utf8]{inputenc}
+\usepackage{tikz}
+\usetikzlibrary{snakes,arrows,shapes}
+\usepackage{amsmath}
+%
+%
+
+%
+
+%
+
+\begin{document}
+\pagestyle{empty}
+%
+%
+%
+
+\enlargethispage{100cm}
+% Start of code
+\begin{tikzpicture}[>=latex',line join=bevel,]
+%%
+\node (energy) at (36.0bp,351.0bp) [draw,fill=gray,circle] {energy};
+  \node (point) at (144.0bp,306.0bp) [draw,fill=gray,circle] {point};
+  \node (model) at (144.0bp,216.0bp) [draw,fill=gray,circle] {model};
+  \node (hessian) at (36.0bp,261.0bp) [draw,fill=gray,circle] {hessian};
+  \node (etc1) at (36.0bp,171.0bp) [draw,fill=gray,circle] {...};
+  \node (saddle_point) at (252.0bp,576.0bp) [draw,fill=gray,circle] {saddle$\backslash$npoint};
+  \node (min_point) at (252.0bp,486.0bp) [draw,fill=gray,circle] {minimum$\backslash$npoint};
+  \node (irc_end_point) at (252.0bp,396.0bp) [draw,fill=gray,circle] {IRC end$\backslash$npoint};
+  \node (irc_point) at (252.0bp,216.0bp) [draw,fill=gray,circle] {IRC$\backslash$npoint};
+  \node (rel_scan_point) at (252.0bp,126.0bp) [draw,fill=gray,circle] {relaxed$\backslash$nscan$\backslash$npoint};
+  \node (etc2) at (252.0bp,306.0bp) [draw,fill=gray,circle] {...};
+  \node (etc3) at (252.0bp,36.0bp) [draw,fill=gray,circle] {...};
+  \node (stat_point) at (361.13bp,569.0bp) [draw,fill=gray,circle] {stationary$\backslash$npoint};
+  \node (pes_edge) at (578.25bp,421.0bp) [draw,fill=gray,circle] {PES$\backslash$nedge};
+  \node (end_point) at (361.13bp,421.0bp) [draw,fill=gray,circle] {end$\backslash$npoint};
+  \node (conf_set) at (470.25bp,569.0bp) [draw,fill=gray,circle] {conformer$\backslash$nset};
+  \node (irc_path) at (361.13bp,296.0bp) [draw,fill=gray,circle] {IRC$\backslash$npath};
+  \node (rel_scan) at (361.13bp,161.0bp) [draw,fill=gray,circle] {relaxed$\backslash$nscan};
+  \node (point_sequence) at (470.25bp,296.0bp) [draw,fill=gray,circle] {point$\backslash$nsequence};
+  \node (pes_node) at (470.25bp,421.0bp) [draw,fill=gray,circle] {PES$\backslash$nnode};
+  \draw [stealth reversed-|] (energy) -- (point);
+  \draw [stealth reversed-|] (energy) -- (model);
+  \draw [stealth reversed-|] (hessian) -- (point);
+  \draw [stealth reversed-|] (hessian) -- (model);
+  \draw [stealth reversed-|] (etc1) -- (point);
+  \draw [stealth reversed-|] (etc1) -- (model);
+  \draw [|-o] (point) -- (saddle_point);
+  \draw [|-o] (point) -- (min_point);
+  \draw [|-o] (point) -- (irc_end_point);
+  \draw [|-o] (point) -- (irc_point);
+  \draw [|-o] (point) -- (rel_scan_point);
+  \draw [|-o] (point) -- (etc2);
+  \draw [|-o] (point) -- (etc3);
+  \draw [|-stealth reversed] (model) -- (saddle_point);
+  \draw [|-stealth reversed] (model) -- (min_point);
+  \draw [|-stealth reversed] (model) -- (irc_end_point);
+  \draw [|-stealth reversed] (model) -- (irc_point);
+  \draw [|-stealth reversed] (model) -- (rel_scan_point);
+  \draw [o-|] (saddle_point) -- (stat_point);
+  \draw [o-|] (saddle_point) -- (pes_edge);
+  \draw [o-|] (min_point) -- (stat_point);
+  \draw [o-|] (min_point) -- (end_point);
+  \draw [stealth reversed-stealth reversed] (stat_point) -- (conf_set);
+  \draw [stealth reversed-|] (irc_end_point) -- (irc_path);
+  \draw [o-|] (irc_end_point) -- (end_point);
+  \draw [stealth reversed-|] (irc_point) -- (irc_path);
+  \draw [stealth reversed-|] (rel_scan_point) -- (rel_scan);
+  \draw [o-|] (irc_path) -- (point_sequence);
+  \draw [o-|] (rel_scan) -- (point_sequence);
+  \draw [stealth reversed-stealth reversed] (end_point) -- (pes_node);
+  \draw [stealth reversed-stealth reversed] (point_sequence) -- (pes_edge);
+  \draw [|-stealth reversed] (pes_node) -- (pes_edge);
+  \draw [|-stealth reversed] (pes_node) -- (pes_edge);
+%
+\end{tikzpicture}
+% End of code
+
+%
+\end{document}
+%
+
+
+

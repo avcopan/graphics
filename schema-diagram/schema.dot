@@ -33,23 +33,29 @@ digraph g {
     etc1        -> model [arrowtail=crow; arrowhead=tee; dir=both]
 
     # Layer 2a
+    saddle_point [label="saddle\npoint"]
+    min_point [label="minimum\npoint"]
     stat_point [label="stationary\npoint"]
     irc_end_point [label="IRC end\npoint"]
     irc_point [label="IRC\npoint"]
     rel_scan_point [label="relaxed\nscan\npoint"]
     etc2 [label="..."]
+    etc3 [label="..."]
 
-    point -> stat_point     [arrowtail=tee; arrowhead=odot; dir=both]
+    point -> saddle_point   [arrowtail=tee; arrowhead=odot; dir=both]
+    point -> min_point      [arrowtail=tee; arrowhead=odot; dir=both]
     point -> irc_end_point  [arrowtail=tee; arrowhead=odot; dir=both]
-    point -> irc_point      [arrowtail=tee; arrowhead=odot; dir=both]
-    point -> rel_scan_point   [arrowtail=tee; arrowhead=odot; dir=both]
     point -> etc2           [arrowtail=tee; arrowhead=odot; dir=both]
+    point -> irc_point      [arrowtail=tee; arrowhead=odot; dir=both]
+    point -> rel_scan_point [arrowtail=tee; arrowhead=odot; dir=both]
+    point -> etc3           [arrowtail=tee; arrowhead=odot; dir=both]
 
-    model -> stat_point     [arrowtail=tee; arrowhead=crow; dir=both]
+    model -> saddle_point   [arrowtail=tee; arrowhead=crow; dir=both]
+    model -> min_point      [arrowtail=tee; arrowhead=crow; dir=both]
     model -> irc_end_point  [arrowtail=tee; arrowhead=crow; dir=both]
     model -> irc_point      [arrowtail=tee; arrowhead=crow; dir=both]
-    model -> rel_scan_point   [style=invis]
-    model -> etc2           [style=invis]
+    model -> rel_scan_point [arrowtail=tee; arrowhead=crow; dir=both]
+    model -> etc3           [style=invis]
 
     # Layer 2b
     conf_set [label="conformer\nset"]
@@ -60,15 +66,25 @@ digraph g {
     end_point [label="end\npoint"]
     point_sequence [label="point\nsequence"]
 
-
-    stat_point -> conf_set      [arrowtail=crow; arrowhead=crow; dir=both]
-    stat_point -> end_point       [arrowtail=odot; arrowhead=tee; dir=both]
-    irc_end_point -> end_point    [arrowtail=odot; arrowhead=tee; dir=both]
+    saddle_point -> stat_point  [arrowtail=odot; arrowhead=tee; dir=both]
+    min_point -> stat_point     [arrowtail=odot; arrowhead=tee; dir=both]
+    min_point -> end_point      [arrowtail=odot; arrowhead=tee; dir=both]
+    irc_end_point -> end_point  [arrowtail=odot; arrowhead=tee; dir=both]
     irc_end_point -> irc_path   [arrowtail=crow; arrowhead=tee; dir=both]
     irc_point -> irc_path       [arrowtail=crow; arrowhead=tee; dir=both]
     rel_scan_point -> rel_scan  [arrowtail=crow; arrowhead=tee; dir=both]
     irc_path -> point_sequence  [arrowtail=odot; arrowhead=tee; dir=both]
     rel_scan -> point_sequence  [arrowtail=odot; arrowhead=tee; dir=both]
 
+    stat_point -> conf_set       [arrowtail=crow; arrowhead=crow; dir=both]
+
     # Layer 3
+    pes_node [label="PES\nnode"]
+    pes_edge [label="PES\nedge"]
+
+    end_point -> pes_node       [arrowtail=crow; arrowhead=crow; dir=both]
+    point_sequence -> pes_edge  [arrowtail=crow; arrowhead=crow; dir=both]
+    saddle_point -> pes_edge    [arrowtail=odot; arrowhead=tee; dir=both]
+    pes_node -> pes_edge        [arrowtail=tee; arrowhead=crow; dir=both]
+    pes_node -> pes_edge        [arrowtail=tee; arrowhead=crow; dir=both]
 }
